@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>PokéCards Market</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>    <!-- Reemplaza TU_CLIENT_ID con el ID de PayPal Sandbox -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AY3PZ1zmHZ7eFdX8311xOinCwcepIvhuIlResORRGJvaFb917XCojpbzpGWMf_AJgF90tWpa7a5Suh4P&currency=USD"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- HEADER -->
+        <header class="header">
+            <h1>PokéCards Market</h1>
+            <p>Descubre y colecciona cartas digitales únicas de Pokémon</p>
+            <div class="tabs">
+                <div class="tab tab-active" id="tab-market" onclick="showTab('market')">Mercado</div>
+                <div class="tab" id="tab-mypurchases" onclick="showTab('mypurchases')">
+                Mis compras <span class="badge" id="owned-count">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- VISTA MERCADO -->
+        <div id="view-market">
+        <div class="filters" id="filters-wrap">
+            <button class="filter-btn active" onclick="filterType('all', this)">Todos</button>
+            <div class="search-wrap">
+                <input type="text" id="search-input" placeholder="Buscar Pokémon..." oninput="filterSearch(this.value)"/>
+            </div>
+        </div>
+            <div id="market-loader" class="loader-wrap">
+                <div class="spinner"></div>
+                <p>Cargando cartas desde PokéAPI...</p>
+            </div>
+            <div class="grid" id="cards-grid" style="display:none"></div>
+        </div>
+
+        <div id="view-mypurchases" style="display:none">
+            <div id="purchases-content"></div>
+        </div>
+    </div>
+
+    <!-- MODAL DE COMPRA -->
+    <div class="modal-overlay" id="modal" style="display:none" onclick="closeModalOutside(event)">
+        <div class="modal" id="modal-inner">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-img"><img id="m-img" src="" alt=""/></div>
+            <div class="modal-name" id="m-name"></div>
+            <div class="modal-meta" id="m-types"></div>
+            <div class="modal-price" id="m-price"></div>
+            <div class="modal-stats" id="m-stats"></div>
+            <div id="paypal-button-container"></div>
+            <div id="payment-status"></div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>⚠️ PokéCards Market es un proyecto con fines exclusivamente educativos.</p>
+        <p>No tiene afiliación con Nintendo, The Pokémon Company ni PayPal. Desarrollado para aprendizaje de APIs y pagos en línea.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,733 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fondo oscuro con dos manchas de luz: una morada arriba y una rosa abajo */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #09060f;
+  color: #f5f0ff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -20vh;
+  left: -15vw;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -15vh;
+  right: -10vw;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.14), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 3rem 0 1.8rem;
+}
+
+.header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  /* degradado morado → rosa aplicado al texto */
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header p {
+  color: rgba(220, 200, 255, 0.55);
+  font-size: 0.88rem;
+  margin-top: 0.6rem;
+}
+
+/* Tabs de navegación */
+.tabs {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  margin: 1.6rem 0 2rem;
+}
+
+.tab {
+  padding: 0.7rem 1.8rem;
+  cursor: pointer;
+  color: rgba(220, 200, 255, 0.55);
+  font-weight: 600;
+  font-size: 0.87rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.tab:hover {
+  color: rgba(220, 200, 255, 0.85);
+}
+
+.tab-active {
+  color: #c084fc !important;
+  border-bottom-color: #a855f7;
+}
+
+/* bolita con el número de cartas compradas */
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  padding: 1px 8px;
+  margin-left: 5px;
+}
+
+/* Filtros y buscador */
+.filters {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.8rem;
+}
+
+.filter-btn {
+  padding: 0.28rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(220, 200, 255, 0.55);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.filter-btn:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #e9d5ff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 18px rgba(168, 85, 247, 0.3);
+}
+
+.search-wrap {
+  margin-left: auto;
+}
+
+.search-wrap input {
+  width: 200px;
+  padding: 0.42rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f0ff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  outline: none;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.search-wrap input::placeholder {
+  color: rgba(220, 200, 255, 0.4);
+}
+
+.search-wrap input:focus {
+  border-color: rgba(168, 85, 247, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Grilla de cartas */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+  gap: 1.1rem;
+}
+
+/* Carta individual */
+.poke-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, background 0.25s;
+}
+
+.poke-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* borde rosado para cartas ya compradas */
+.poke-card.owned {
+  border-color: rgba(236, 72, 153, 0.35);
+  box-shadow: 0 0 24px rgba(236, 72, 153, 0.1);
+}
+
+.card-img-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* brillo sutil en el fondo de la imagen */
+.card-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 55% 35%, rgba(168, 85, 247, 0.10), transparent 65%);
+}
+
+.poke-card img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.poke-card:hover img {
+  transform: scale(1.08) translateY(-3px);
+}
+
+/* cartas bloqueadas: imagen en silueta + capa oscura encima */
+.poke-card.locked img {
+  filter: saturate(0) brightness(0.45);
+}
+
+.poke-card.locked .card-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(30, 10, 50, 0.55), rgba(15, 5, 30, 0.70));
+  z-index: 2;
+}
+
+/* candado visible solo al hacer hover */
+.lock-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.poke-card.locked:hover .lock-icon {
+  opacity: 0.8;
+}
+
+.owned-badge {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  z-index: 4;
+}
+
+.card-info {
+  padding: 0.8rem 1rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f5f0ff;
+  text-transform: capitalize;
+  margin-bottom: 0.45rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-types {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.type-badge {
+  font-size: 0.58rem;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+/* Botones */
+.btn {
+  padding: 0.55rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.3);
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(220, 200, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #e9d5ff;
+}
+
+/* botón pequeño dentro de cada carta */
+.buy-btn {
+  padding: 0.28rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  color: #c084fc;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s;
+}
+
+.buy-btn:hover {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+}
+
+.buy-btn:disabled {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.2);
+  cursor: default;
+}
+
+/* Modal de compra */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 2, 12, 0.78);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  background: rgba(20, 10, 38, 0.80);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 22px;
+  max-width: 440px;
+  width: 100%;
+  padding: 2rem;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  backdrop-filter: blur(28px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(220, 200, 255, 0.55);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(236, 72, 153, 0.15);
+  border-color: rgba(236, 72, 153, 0.3);
+  color: #f9a8d4;
+}
+
+.modal-img {
+  text-align: center;
+  background: radial-gradient(circle at 50% 40%, rgba(168, 85, 247, 0.10), transparent 65%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.modal-img img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(168, 85, 247, 0.3));
+}
+
+.modal-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 0.6rem;
+}
+
+.modal-meta {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
+.modal-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 1.3rem;
+}
+
+.modal-stats {
+  margin-bottom: 1.4rem;
+}
+
+.stats-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: rgba(220, 200, 255, 0.45);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-bottom: 0.55rem;
+}
+
+.stat-label {
+  color: rgba(220, 200, 255, 0.55);
+  text-transform: capitalize;
+  min-width: 90px;
+}
+
+.stat-bar-wrap {
+  flex: 1;
+  height: 4px;
+  margin: 0 0.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.stat-bar {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  transition: width 0.7s ease;
+}
+
+.stat-val {
+  min-width: 28px;
+  text-align: right;
+  font-weight: 700;
+  color: rgba(220, 200, 255, 0.8);
+}
+
+#paypal-button-container {
+  margin-top: 1.2rem;
+}
+
+/* mensajes de estado del pago */
+.payment-status {
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.87rem;
+  margin-top: 1rem;
+}
+
+.status-success  { background: rgba(192, 132, 252, 0.08); border: 1px solid rgba(192, 132, 252, 0.3); color: #c084fc; }
+.status-error    { background: rgba(249, 168, 212, 0.06); border: 1px solid rgba(249, 168, 212, 0.25); color: #f9a8d4; }
+.status-processing { background: rgba(168, 85, 247, 0.07); border: 1px solid rgba(168, 85, 247, 0.25); color: #c084fc; }
+
+/* Sección de Mis Compras */
+.empty-state {
+  text-align: center;
+  padding: 4.5rem 1rem;
+  color: rgba(220, 200, 255, 0.45);
+}
+
+.empty-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  opacity: 0.35;
+}
+
+.purchases-summary {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 140px;
+  padding: 1.1rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+}
+
+.summary-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(220, 200, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+}
+
+.summary-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Loader */
+.loader-wrap {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: rgba(220, 200, 255, 0.45);
+}
+
+.spinner {
+  width: 38px;
+  height: 38px;
+  border: 2px solid rgba(168, 85, 247, 0.2);
+  border-top-color: #a855f7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Notificaciones toast */
+.toast {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  max-width: 300px;
+  padding: 0.9rem 1.5rem;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.87rem;
+  z-index: 200;
+  backdrop-filter: blur(20px);
+  animation: slideIn 0.3s ease;
+}
+
+.toast-success {
+  background: rgba(168, 85, 247, 0.88);
+  color: #fff;
+  border: 1px solid rgba(192, 132, 252, 0.5);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.35);
+}
+
+.toast-error {
+  background: rgba(236, 72, 153, 0.85);
+  color: #fff;
+  border: 1px solid rgba(249, 168, 212, 0.4);
+  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.3);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/*Colores por tipo de Pokémon*/
+.t-fire     { background: rgba(251, 113,  75, 0.15); color: #fca98a; border: 1px solid rgba(251, 113,  75, 0.25); }
+.t-water    { background: rgba( 96, 165, 250, 0.15); color: #93c5fd; border: 1px solid rgba( 96, 165, 250, 0.25); }
+.t-grass    { background: rgba(134, 239, 172, 0.15); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.25); }
+.t-electric { background: rgba(250, 204,  21, 0.15); color: #fde047; border: 1px solid rgba(250, 204,  21, 0.25); }
+.t-psychic  { background: rgba(236,  72, 153, 0.15); color: #f9a8d4; border: 1px solid rgba(236,  72, 153, 0.25); }
+.t-ice      { background: rgba(165, 243, 252, 0.15); color: #a5f3fc; border: 1px solid rgba(165, 243, 252, 0.25); }
+.t-dragon   { background: rgba(168,  85, 247, 0.15); color: #d8b4fe; border: 1px solid rgba(168,  85, 247, 0.25); }
+.t-dark     { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100, 116, 139, 0.25); }
+.t-fairy    { background: rgba(244, 114, 182, 0.15); color: #fbcfe8; border: 1px solid rgba(244, 114, 182, 0.25); }
+.t-normal   { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25); }
+.t-fighting { background: rgba(249, 115,  22, 0.15); color: #fdba74; border: 1px solid rgba(249, 115,  22, 0.25); }
+.t-poison   { background: rgba(192, 132, 252, 0.15); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.25); }
+.t-ground   { background: rgba(217, 119,   6, 0.15); color: #fbbf24; border: 1px solid rgba(217, 119,   6, 0.25); }
+.t-flying   { background: rgba(186, 230, 253, 0.15); color: #e0f2fe; border: 1px solid rgba(186, 230, 253, 0.25); }
+.t-bug      { background: rgba(132, 204,  22, 0.15); color: #bef264; border: 1px solid rgba(132, 204,  22, 0.25); }
+.t-rock     { background: rgba(168, 162, 158, 0.15); color: #d6d3d1; border: 1px solid rgba(168, 162, 158, 0.25); }
+.t-ghost    { background: rgba(129, 140, 248, 0.15); color: #c7d2fe; border: 1px solid rgba(129, 140, 248, 0.25); }
+.t-steel    { background: rgba(203, 213, 225, 0.15); color: #e2e8f0; border: 1px solid rgba(203, 213, 225, 0.25); }
+.t-default  { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100, 116, 139, 0.25); }
+
+
+/* PayPal */
+.paypal-error {
+  color: #f9a8d4;
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 0.8rem;
+  border: 1px solid rgba(249, 168, 212, 0.2);
+  border-radius: 14px;
+  margin-top: 0.6rem;
+  background: rgba(249, 168, 212, 0.05);
+}
+/* Footer */
+.footer {
+  margin-top: 4rem;
+  padding: 1.8rem 1.4rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+.footer p {
+  color: rgba(220, 200, 255, 0.4);
+  font-size: 0.77rem;
+  line-height: 1.8;
+}
+
+.footer p:first-child {
+  color: rgba(220, 200, 255, 0.6);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.3); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(168, 85, 247, 0.5); }
+
+
+/*Diseño responsivo */
+@media (max-width: 600px) {
+  .header h1 { font-size: 2rem; letter-spacing: 1px; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 0.9rem; }
+  .filters { gap: 0.4rem; }
+  .search-wrap { margin-left: 0; width: 100%; }
+  .search-wrap input { width: 100%; }
+  .modal { padding: 1.4rem; }
+}
