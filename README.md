@@ -11,6 +11,7 @@ Aplicación web para explorar y comprar cartas coleccionables de Pokémon con pa
 ## Cómo correrlo
 
 Abre la terminal del proyecto y ejecuta:
+
     npm install
     npm start
 
