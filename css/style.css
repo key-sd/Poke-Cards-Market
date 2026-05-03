@@ -21,7 +21,7 @@ body::before {
   left: -15vw;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 65%);
+  background: radial-gradient(circle, #a855f72e, transparent 65%);
   pointer-events: none;
   z-index: 0;
 }
@@ -33,7 +33,7 @@ body::after {
   right: -10vw;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.14), transparent 65%);
+  background: radial-gradient(circle, #ec489924, transparent 65%);
   pointer-events: none;
   z-index: 0;
 }
@@ -57,7 +57,6 @@ body::after {
   font-size: 2.8rem;
   font-weight: 800;
   letter-spacing: 2px;
-  /* degradado morado → rosa aplicado al texto */
   background: linear-gradient(135deg, #a855f7, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -65,7 +64,7 @@ body::after {
 }
 
 .header p {
-  color: rgba(220, 200, 255, 0.55);
+  color: #dcc8ff8c;
   font-size: 0.88rem;
   margin-top: 0.6rem;
 }
@@ -74,14 +73,14 @@ body::after {
 .tabs {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid #ffffff1a;
   margin: 1.6rem 0 2rem;
 }
 
 .tab {
   padding: 0.7rem 1.8rem;
   cursor: pointer;
-  color: rgba(220, 200, 255, 0.55);
+  color: #dcc8ff8c;
   font-weight: 600;
   font-size: 0.87rem;
   border-bottom: 2px solid transparent;
@@ -90,7 +89,7 @@ body::after {
 }
 
 .tab:hover {
-  color: rgba(220, 200, 255, 0.85);
+  color: #dcc8ffd9;
 }
 
 .tab-active {
@@ -122,9 +121,9 @@ body::after {
 .filter-btn {
   padding: 0.28rem 0.95rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(220, 200, 255, 0.55);
+  border: 1px solid #ffffff1a;
+  background: #ffffff0a;
+  color: #dcc8ff8c;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
@@ -134,16 +133,16 @@ body::after {
 }
 
 .filter-btn:hover {
-  border-color: rgba(168, 85, 247, 0.4);
+  border-color: #a855f766;
   color: #e9d5ff;
-  background: rgba(255, 255, 255, 0.07);
+  background: #ffffff12;
 }
 
 .filter-btn.active {
   background: linear-gradient(135deg, #a855f7, #ec4899);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 4px 18px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 18px #a855f74d;
 }
 
 .search-wrap {
@@ -154,8 +153,8 @@ body::after {
   width: 200px;
   padding: 0.42rem 1.1rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #ffffff1a;
+  background: #ffffff0a;
   color: #f5f0ff;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.82rem;
@@ -165,12 +164,12 @@ body::after {
 }
 
 .search-wrap input::placeholder {
-  color: rgba(220, 200, 255, 0.4);
+  color: #dcc8ff66;
 }
 
 .search-wrap input:focus {
-  border-color: rgba(168, 85, 247, 0.5);
-  background: rgba(255, 255, 255, 0.07);
+  border-color: #a855f780;
+  background: #ffffff12;
 }
 
 /* Grilla de cartas */
@@ -183,8 +182,8 @@ body::after {
 /* Carta individual */
 .poke-card {
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #ffffff1a;
+  background: #ffffff0a;
   backdrop-filter: blur(16px);
   overflow: hidden;
   cursor: pointer;
@@ -194,15 +193,15 @@ body::after {
 
 .poke-card:hover {
   transform: translateY(-6px) scale(1.01);
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(168, 85, 247, 0.3);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: #ffffff12;
+  border-color: #a855f74d;
+  box-shadow: 0 16px 40px #00000066, inset 0 1px 0 #ffffff14;
 }
 
 /* borde rosado para cartas ya compradas */
 .poke-card.owned {
-  border-color: rgba(236, 72, 153, 0.35);
-  box-shadow: 0 0 24px rgba(236, 72, 153, 0.1);
+  border-color: #ec489959;
+  box-shadow: 0 0 24px #ec48991a;
 }
 
 .card-img-wrap {
@@ -220,7 +219,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 55% 35%, rgba(168, 85, 247, 0.10), transparent 65%);
+  background: radial-gradient(circle at 55% 35%, #a855f71a, transparent 65%);
 }
 
 .poke-card img {
@@ -245,7 +244,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(30, 10, 50, 0.55), rgba(15, 5, 30, 0.70));
+  background: linear-gradient(160deg, #1e0a328c, #0f051eb3);
   z-index: 2;
 }
 
@@ -280,7 +279,7 @@ body::after {
 
 .card-info {
   padding: 0.8rem 1rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #ffffff14;
 }
 
 .card-name {
@@ -341,7 +340,7 @@ body::after {
 .btn-primary {
   background: linear-gradient(135deg, #a855f7, #ec4899);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 16px #a855f74d;
 }
 
 .btn-primary:hover {
@@ -350,13 +349,13 @@ body::after {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(220, 200, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: #ffffff0a;
+  color: #dcc8ffcc;
+  border: 1px solid #ffffff1a;
 }
 
 .btn-secondary:hover {
-  border-color: rgba(168, 85, 247, 0.4);
+  border-color: #a855f766;
   color: #e9d5ff;
 }
 
@@ -364,8 +363,8 @@ body::after {
 .buy-btn {
   padding: 0.28rem 0.85rem;
   border-radius: 999px;
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #a855f766;
+  background: #ffffff0a;
   color: #c084fc;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.7rem;
@@ -378,13 +377,13 @@ body::after {
   background: linear-gradient(135deg, #a855f7, #ec4899);
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+  box-shadow: 0 4px 14px #a855f759;
 }
 
 .buy-btn:disabled {
   background: transparent;
-  border-color: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff0f;
+  color: #ffffff33;
   cursor: default;
 }
 
@@ -392,7 +391,7 @@ body::after {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(5, 2, 12, 0.78);
+  background: #05020cc7;
   z-index: 100;
   display: flex;
   align-items: center;
@@ -402,8 +401,8 @@ body::after {
 }
 
 .modal {
-  background: rgba(20, 10, 38, 0.80);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: #140a26cc;
+  border: 1px solid #ffffff1a;
   border-radius: 22px;
   max-width: 440px;
   width: 100%;
@@ -412,7 +411,7 @@ body::after {
   max-height: 90vh;
   overflow-y: auto;
   backdrop-filter: blur(28px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  box-shadow: 0 30px 80px #00000099, inset 0 1px 0 #ffffff12;
 }
 
 .modal-close {
@@ -422,9 +421,9 @@ body::after {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(220, 200, 255, 0.55);
+  border: 1px solid #ffffff1a;
+  background: #ffffff0d;
+  color: #dcc8ff8c;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
@@ -434,15 +433,15 @@ body::after {
 }
 
 .modal-close:hover {
-  background: rgba(236, 72, 153, 0.15);
-  border-color: rgba(236, 72, 153, 0.3);
+  background: #ec489926;
+  border-color: #ec48994d;
   color: #f9a8d4;
 }
 
 .modal-img {
   text-align: center;
-  background: radial-gradient(circle at 50% 40%, rgba(168, 85, 247, 0.10), transparent 65%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(circle at 50% 40%, #a855f71a, transparent 65%);
+  border: 1px solid #ffffff14;
   border-radius: 16px;
   padding: 1.4rem;
   margin-bottom: 1.2rem;
@@ -452,7 +451,7 @@ body::after {
   width: 130px;
   height: 130px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(168, 85, 247, 0.3));
+  filter: drop-shadow(0 8px 24px #a855f74d);
 }
 
 .modal-name {
@@ -495,7 +494,7 @@ body::after {
 .stats-title {
   font-size: 0.68rem;
   font-weight: 700;
-  color: rgba(220, 200, 255, 0.45);
+  color: #dcc8ff73;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 0.85rem;
@@ -510,7 +509,7 @@ body::after {
 }
 
 .stat-label {
-  color: rgba(220, 200, 255, 0.55);
+  color: #dcc8ff8c;
   text-transform: capitalize;
   min-width: 90px;
 }
@@ -519,7 +518,7 @@ body::after {
   flex: 1;
   height: 4px;
   margin: 0 0.8rem;
-  background: rgba(255, 255, 255, 0.06);
+  background: #ffffff0f;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -535,7 +534,7 @@ body::after {
   min-width: 28px;
   text-align: right;
   font-weight: 700;
-  color: rgba(220, 200, 255, 0.8);
+  color: #dcc8ffcc;
 }
 
 #paypal-button-container {
@@ -552,15 +551,15 @@ body::after {
   margin-top: 1rem;
 }
 
-.status-success  { background: rgba(192, 132, 252, 0.08); border: 1px solid rgba(192, 132, 252, 0.3); color: #c084fc; }
-.status-error    { background: rgba(249, 168, 212, 0.06); border: 1px solid rgba(249, 168, 212, 0.25); color: #f9a8d4; }
-.status-processing { background: rgba(168, 85, 247, 0.07); border: 1px solid rgba(168, 85, 247, 0.25); color: #c084fc; }
+.status-success    { background: #c084fc14; border: 1px solid #c084fc4d; color: #c084fc; }
+.status-error      { background: #f9a8d40f; border: 1px solid #f9a8d440; color: #f9a8d4; }
+.status-processing { background: #a855f712; border: 1px solid #a855f740; color: #c084fc; }
 
 /* Sección de Mis Compras */
 .empty-state {
   text-align: center;
   padding: 4.5rem 1rem;
-  color: rgba(220, 200, 255, 0.45);
+  color: #dcc8ff73;
 }
 
 .empty-icon {
@@ -581,15 +580,15 @@ body::after {
   min-width: 140px;
   padding: 1.1rem 1.5rem;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #ffffff1a;
+  background: #ffffff0a;
   backdrop-filter: blur(16px);
 }
 
 .summary-label {
   font-size: 0.7rem;
   font-weight: 600;
-  color: rgba(220, 200, 255, 0.45);
+  color: #dcc8ff73;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0.4rem;
@@ -609,13 +608,13 @@ body::after {
 .loader-wrap {
   text-align: center;
   padding: 4rem 1rem;
-  color: rgba(220, 200, 255, 0.45);
+  color: #dcc8ff73;
 }
 
 .spinner {
   width: 38px;
   height: 38px;
-  border: 2px solid rgba(168, 85, 247, 0.2);
+  border: 2px solid #a855f733;
   border-top-color: #a855f7;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -642,17 +641,17 @@ body::after {
 }
 
 .toast-success {
-  background: rgba(168, 85, 247, 0.88);
+  background: #a855f7e0;
   color: #fff;
-  border: 1px solid rgba(192, 132, 252, 0.5);
-  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.35);
+  border: 1px solid #c084fc80;
+  box-shadow: 0 8px 30px #a855f759;
 }
 
 .toast-error {
-  background: rgba(236, 72, 153, 0.85);
+  background: #ec4899d9;
   color: #fff;
-  border: 1px solid rgba(249, 168, 212, 0.4);
-  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.3);
+  border: 1px solid #f9a8d466;
+  box-shadow: 0 8px 30px #ec48994d;
 }
 
 @keyframes slideIn {
@@ -660,28 +659,26 @@ body::after {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
-/*Colores por tipo de Pokémon*/
-.t-fire     { background: rgba(251, 113,  75, 0.15); color: #fca98a; border: 1px solid rgba(251, 113,  75, 0.25); }
-.t-water    { background: rgba( 96, 165, 250, 0.15); color: #93c5fd; border: 1px solid rgba( 96, 165, 250, 0.25); }
-.t-grass    { background: rgba(134, 239, 172, 0.15); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.25); }
-.t-electric { background: rgba(250, 204,  21, 0.15); color: #fde047; border: 1px solid rgba(250, 204,  21, 0.25); }
-.t-psychic  { background: rgba(236,  72, 153, 0.15); color: #f9a8d4; border: 1px solid rgba(236,  72, 153, 0.25); }
-.t-ice      { background: rgba(165, 243, 252, 0.15); color: #a5f3fc; border: 1px solid rgba(165, 243, 252, 0.25); }
-.t-dragon   { background: rgba(168,  85, 247, 0.15); color: #d8b4fe; border: 1px solid rgba(168,  85, 247, 0.25); }
-.t-dark     { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100, 116, 139, 0.25); }
-.t-fairy    { background: rgba(244, 114, 182, 0.15); color: #fbcfe8; border: 1px solid rgba(244, 114, 182, 0.25); }
-.t-normal   { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25); }
-.t-fighting { background: rgba(249, 115,  22, 0.15); color: #fdba74; border: 1px solid rgba(249, 115,  22, 0.25); }
-.t-poison   { background: rgba(192, 132, 252, 0.15); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.25); }
-.t-ground   { background: rgba(217, 119,   6, 0.15); color: #fbbf24; border: 1px solid rgba(217, 119,   6, 0.25); }
-.t-flying   { background: rgba(186, 230, 253, 0.15); color: #e0f2fe; border: 1px solid rgba(186, 230, 253, 0.25); }
-.t-bug      { background: rgba(132, 204,  22, 0.15); color: #bef264; border: 1px solid rgba(132, 204,  22, 0.25); }
-.t-rock     { background: rgba(168, 162, 158, 0.15); color: #d6d3d1; border: 1px solid rgba(168, 162, 158, 0.25); }
-.t-ghost    { background: rgba(129, 140, 248, 0.15); color: #c7d2fe; border: 1px solid rgba(129, 140, 248, 0.25); }
-.t-steel    { background: rgba(203, 213, 225, 0.15); color: #e2e8f0; border: 1px solid rgba(203, 213, 225, 0.25); }
-.t-default  { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100, 116, 139, 0.25); }
-
+/* Colores por tipo de Pokémon */
+.t-fire     { background: #fb714b26; color: #fca98a; border: 1px solid #fb714b40; }
+.t-water    { background: #60a5fa26; color: #93c5fd; border: 1px solid #60a5fa40; }
+.t-grass    { background: #86efac26; color: #86efac; border: 1px solid #86efac40; }
+.t-electric { background: #facc1526; color: #fde047; border: 1px solid #facc1540; }
+.t-psychic  { background: #ec489926; color: #f9a8d4; border: 1px solid #ec489940; }
+.t-ice      { background: #a5f3fc26; color: #a5f3fc; border: 1px solid #a5f3fc40; }
+.t-dragon   { background: #a855f726; color: #d8b4fe; border: 1px solid #a855f740; }
+.t-dark     { background: #64748b26; color: #94a3b8; border: 1px solid #64748b40; }
+.t-fairy    { background: #f472b626; color: #fbcfe8; border: 1px solid #f472b640; }
+.t-normal   { background: #94a3b826; color: #cbd5e1; border: 1px solid #94a3b840; }
+.t-fighting { background: #f9731626; color: #fdba74; border: 1px solid #f9731640; }
+.t-poison   { background: #c084fc26; color: #e9d5ff; border: 1px solid #c084fc40; }
+.t-ground   { background: #d9770626; color: #fbbf24; border: 1px solid #d9770640; }
+.t-flying   { background: #bae6fd26; color: #e0f2fe; border: 1px solid #bae6fd40; }
+.t-bug      { background: #84cc1626; color: #bef264; border: 1px solid #84cc1640; }
+.t-rock     { background: #a8a29e26; color: #d6d3d1; border: 1px solid #a8a29e40; }
+.t-ghost    { background: #818cf826; color: #c7d2fe; border: 1px solid #818cf840; }
+.t-steel    { background: #cbd5e126; color: #e2e8f0; border: 1px solid #cbd5e140; }
+.t-default  { background: #64748b26; color: #94a3b8; border: 1px solid #64748b40; }
 
 /* PayPal */
 .paypal-error {
@@ -689,40 +686,40 @@ body::after {
   font-size: 0.82rem;
   text-align: center;
   padding: 0.8rem;
-  border: 1px solid rgba(249, 168, 212, 0.2);
+  border: 1px solid #f9a8d433;
   border-radius: 14px;
   margin-top: 0.6rem;
-  background: rgba(249, 168, 212, 0.05);
+  background: #f9a8d40d;
 }
+
 /* Footer */
 .footer {
   margin-top: 4rem;
   padding: 1.8rem 1.4rem;
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #ffffff14;
   position: relative;
   z-index: 1;
 }
 
 .footer p {
-  color: rgba(220, 200, 255, 0.4);
+  color: #dcc8ff66;
   font-size: 0.77rem;
   line-height: 1.8;
 }
 
 .footer p:first-child {
-  color: rgba(220, 200, 255, 0.6);
+  color: #dcc8ff99;
   font-weight: 600;
   margin-bottom: 0.3rem;
 }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.3); border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(168, 85, 247, 0.5); }
+::-webkit-scrollbar-thumb { background: #a855f74d; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #a855f780; }
 
-
-/*Diseño responsivo */
+/* Diseño responsivo */
 @media (max-width: 600px) {
   .header h1 { font-size: 2rem; letter-spacing: 1px; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 0.9rem; }
