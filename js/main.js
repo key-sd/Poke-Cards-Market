@@ -116,12 +116,17 @@ function renderGrid() {
   const grid = document.getElementById('cards-grid');
   grid.innerHTML = '';
 
-  if (!filteredCards.length) {
+  // compradas primero, luego las bloqueadas
+  const sorted = [...filteredCards].sort((a, b) => {
+    return (ownedIds.has(a.id) ? 0 : 1) - (ownedIds.has(b.id) ? 0 : 1);
+  });
+
+  if (!sorted.length) {
     grid.innerHTML = '<p style="color:#8899bb;padding:2rem">No se encontraron cartas.</p>';
     return;
   }
 
-  filteredCards.forEach(card => {
+  sorted.forEach(card => {
     const isOwned = ownedIds.has(card.id);
     const el      = document.createElement('div');
     el.className  = `poke-card ${isOwned ? 'owned' : 'locked'}`;
